@@ -19,7 +19,7 @@ import { formatDate, getInitials } from "@/utils/formatters";
 /**
  * Props pour le composant ProviderCard
  */
-interface ProviderCardProps {
+export interface ProviderCardProps {
   /** Identifiant du prestataire */
   id: string;
   /** Nom du prestataire */

@@ -1,7 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ActivitiesList from "./ActivitiesList";
-import { activitiesMocks } from "@/mocks";
 import { Activity } from "@/types";
+import { generateMockActivities } from "@/mocks/activitiesMocks";
+import { generateMockProviders } from "@/mocks/providersMocks";
+
+// Créer des données mockées
+const providers = generateMockProviders(5);
+const mockActivities = generateMockActivities(20, providers);
+const mockPagination = {
+  page: 1,
+  limit: 10,
+  total: 20,
+};
 
 const meta: Meta<typeof ActivitiesList> = {
   title: "Organisms/ActivitiesList",
@@ -17,8 +27,8 @@ type Story = StoryObj<typeof ActivitiesList>;
 
 export const Default: Story = {
   args: {
-    activities: activitiesMocks.activities as Activity[],
-    pagination: activitiesMocks.pagination,
+    activities: mockActivities as Activity[],
+    pagination: mockPagination,
     isLoading: false,
     availableCategories: [
       "Cuisine",
@@ -64,13 +74,15 @@ export const Empty: Story = {
 export const WithFilters: Story = {
   args: {
     ...Default.args,
-    activities: activitiesMocks.activities.filter(
-      (activity) => activity.status === "pending_review"
+    activities: mockActivities.filter(
+      (activity: Activity) => activity.status === "pending_review"
     ) as Activity[],
     pagination: {
       page: 1,
       limit: 10,
-      total: 1,
+      total: mockActivities.filter(
+        (activity) => activity.status === "pending_review"
+      ).length,
     },
   },
 };

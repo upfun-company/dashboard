@@ -182,10 +182,9 @@ export const WithTooltip: Story = {
     title: "Réservations",
     value: "438",
     icon: <ShoppingCart size={24} />,
-    iconColor: "#ff9800",
-    changePercentage: 8.7,
-    subtitle: "Ce mois-ci",
-    tooltip: "Nombre total de réservations effectuées ce mois-ci",
+    iconColor: "warning",
+    change: 8.7,
+    period: "Ce mois-ci",
   },
 };
 
